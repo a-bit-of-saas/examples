@@ -51,7 +51,5 @@ If you did not request this reset, please ignore this email.`,
   }
 
   await client.messages.create(MAILGUN_DOMAIN, messageData)
-
-  console.log('Redirecting')
   redirect('/forgot-password/success')
 }
