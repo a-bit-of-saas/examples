@@ -9,7 +9,7 @@ export const SubmitButton = ({ children }: { children: ReactNode }) => {
   const { pending } = experimental_useFormStatus()
   return (
     <Button type="submit" disabled={pending}>
-      {pending ? <SymbolIcon /> : children}
+      {pending ? <SymbolIcon className="animate-spin" /> : children}
     </Button>
   )
 }
