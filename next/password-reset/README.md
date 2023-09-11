@@ -1,4 +1,4 @@
-# Build SaaS with Ethan - Password Reset
+# [Build SaaS with Ethan - Password Reset](https://ethanmick.com/how-to-create-a-password-reset-flow/)
 
 Resetting a password is important to your application's security and usability.
 Without a doubt, your app users will sign up and then forget their password.
@@ -48,6 +48,38 @@ therefore, they are who they say they are.
 This example uses:
 
 - Next.js 13, App Directory
+- TypeScript
 - Radix Themes
 - Tailwind CSS
 - Mailgun
+- Prisma
+- Postgres
+
+### Development
+
+Update the connection string in `.env` to point to a Postgres database. I used docker.
+
+```
+docker run --rm --publish 5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_DB=postgres postgres
+```
+
+Then, you can update the example user in `prisma/seed.ts` to have your own email
+if you want to get the password reset email.
+
+Then run:
+
+```
+pnpm install
+npx prisma db push
+npx prisma db seed
+pnpm dev
+```
+
+### Environment Variables
+
+You will need the following environment variables for Mailgun:
+
+```
+MAILGUN_DOMAIN=your.domain.com
+MAILGUN_API_KEY=api_key
+```
