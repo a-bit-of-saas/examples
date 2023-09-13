@@ -11,6 +11,9 @@ const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || ''
 const DOMAIN = process.env.DOMAIN || 'localhost:3000'
 const PROTOCOL = process.env.NODE_ENV === 'production' ? 'https' : 'http'
 
+const mailgun = new Mailgun(formData)
+const client = mailgun.client({ username: 'api', key: API_KEY })
+
 export async function resetPassword(data: FormData) {
   const email = data.get('email')
   if (!email || typeof email !== 'string') {
@@ -35,9 +38,6 @@ export async function resetPassword(data: FormData) {
       token: `${randomUUID()}${randomUUID()}`.replace(/-/g, ''),
     },
   })
-
-  const mailgun = new Mailgun(formData)
-  const client = mailgun.client({ username: 'api', key: API_KEY })
 
   const messageData = {
     from: `Password Reset <security@${MAILGUN_DOMAIN}>`,
