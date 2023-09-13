@@ -59,5 +59,5 @@ export async function resetPassword(token: string, data: FormData) {
       error: `An unexpected error occured. Please try again and if the problem persists, contact support.`,
     }
   }
-  redirect('/')
+  redirect('/password-reset/success')
 }
